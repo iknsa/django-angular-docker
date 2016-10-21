@@ -1,0 +1,49 @@
+# Django
+# --------------------------
+Django==1.10.2
+
+# Authentication
+# -------------------------
+# django-allauth==0.28.0
+
+# Multitenancy
+# ------------
+# django-hosts==2.0
+
+# Python server
+# -------------
+uWSGI==2.0.14
+
+# Websockets
+# --------------------------
+# channels==0.17.2
+
+# Celery
+# ------
+celery==3.1.24
+flower==0.9.1
+
+# Forms
+# -----
+django-crispy-forms==1.6.0
+
+
+# Images
+# --------------------------
+#Pillow==3.3.1
+#imgix==1.1.2
+#-e git+https://github.com/mariocesar/sorl-thumbnail@v12.3#egg=Package
+
+# Cache
+# -----
+python3-memcached==1.51
+
+# Mailgun
+# -------
+django-mailgun==0.9.1
+
+
+# Payments
+# --------
+django-paypal==0.3.3
+# Braintree
