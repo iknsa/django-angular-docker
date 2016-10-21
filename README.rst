@@ -4,7 +4,7 @@ TEST python + Django + angular
 
 Using Python Django REST framework Angular, do an application allowing to:
 
-1. Start project with django `docker https://docs.docker.com/compose/django/`_.
+1. Start project with django `docker <https://docs.docker.com/compose/django/>`_.
 2. Use DjangoREST framework (improve django docker setup)
 3. Allow to subscribe as a django/user using the authorization of google allowing to access emails
     * https://github.com/omab/python-social-auth
