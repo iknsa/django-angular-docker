@@ -1,8 +1,8 @@
-FROM python:3.5-alpine
+FROM python:2.7
+MAINTAINER Philippe Bazard "bazard.philippe@gmail.com"
 ENV PYTHONUNBUFFERED 1
-ENV REDIS_HOST "redis"
 RUN mkdir /code
 WORKDIR /code
-ADD . /code/
+ADD requirements.txt /code/
 RUN pip install -r requirements.txt
-RUN python manage.py migrate
+ADD . /code/
