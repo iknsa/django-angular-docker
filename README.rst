@@ -15,6 +15,6 @@ Using Python Django REST framework Angular, do an application allowing to:
     * https://console.developers.google.com/apis/dashboard
 5. Display the 100 emails
 6. Allow to logout
-6. Allow to logback in
+7. Allow to logback in
 
-You will provide the source code of your app so that it can be tested
+You will provide the source code of your app so that it can be tested.
