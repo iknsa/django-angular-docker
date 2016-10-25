@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load static %}
+
+{% block main %}
+    <div class="container content">
+        <h1>Third-party authentication demo</h1>
+        <p>
+            <ul>
+                {% if user and not user.is_anonymous %}
+                    <li>
+                        <a>Hello {{ user.get_full_name|default:user.username }}!</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a>
+                    </li>
+                    <li>
+                        <div ng-controller="gmailCtrl">
+                            <p>The ID is {% templatetag openvariable %} res {% templatetag closevariable %}</p>
+                        </div>
+
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Login with Facebook</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">Login with Google</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Login with Twitter</a>
+                    </li>
+                {% endif %}
+    </ul>
+    </p>
+
+    <div class="container content">
+        <div ng-controller="helloCtrl">
+            <p>The ID is {% templatetag openvariable %} greeting.id {% templatetag closevariable %}</p>
+            <p>The content is {% templatetag openvariable %} greeting.content {% templatetag closevariable %}</p>
+        </div>
+    </div>
+
+    <div class="container content">
+        <input type="text" ng-model="yourName" placeholder="Enter a name here">
+        <hr>
+        <h1>Hello {% templatetag openvariable %} yourName {% templatetag closevariable %}!</h1>
+    </div>
+
+    </div>
+{% endblock %}
