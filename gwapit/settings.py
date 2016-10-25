@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'gwapit',
+
+    'social.apps.django_app.default',
 ]
 
 MIDDLEWARE = [
@@ -124,4 +128,25 @@ TEMPLATE_DIRS = (os.path.join(BASE_DIR, "templates"),)
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
+]
+
+
+# python-social-auth configuration
+
+AUTHENTICATION_BACKENDS = [
+   'social.backends.google.GoogleOAuth2',
+   'django.contrib.auth.backends.ModelBackend',
+]
+
+LOGIN_REDIRECT_URL = '/'
+
+# to be filled with your Google informations
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
+    'https://www.googleapis.com/auth/gmail.readonly',
+    'https://www.googleapis.com/auth/userinfo.email',
+    'https://www.googleapis.com/auth/userinfo.profile',
+    # Add other requested scopes.
 ]
