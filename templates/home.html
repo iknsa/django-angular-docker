@@ -6,9 +6,24 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand navbar-left" href="#">
                     <img alt="Brand" src="{% static 'img/logo-40x40.png' %}">
                 </a>
+
+            </div>
+            <div>
+                {% if user and not user.is_anonymous %}
+                    <p class="navbar-text navbar-right">Signed in as <a href="#"
+                                                                        class="navbar-link">{{ user.get_full_name|default:user.username }}</a>
+                    <a href="{% url 'auth:logout' %}?next={{ request.path }}"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                    </p>
+                {% else %}
+                    <p class="navbar-text navbar-right">
+                        <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">
+                        <i class="fa fa-google-plus-square fa-2x" aria-hidden="true"></i>
+                    </a>
+                    </p>
+                {% endif %}
             </div>
         </div>
     </nav>
