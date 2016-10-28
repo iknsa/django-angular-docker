@@ -69,9 +69,7 @@ def get_mail(request):
         message_list_dict = {}
 
         for index, item in enumerate(message_list):
-            print('{} {}'.format(index, item))
             snippet = 'snippet' in message_list[0]
-            print(snippet)
 
         # iterate over dictionaries
         for element in message_list:
@@ -83,9 +81,8 @@ def get_mail(request):
             for entry in headers:
                 if entry['name'] == 'From':
                     email['from'] = entry['value']
-                    print(entry['value'])
 
-            email_list.append(email)
+            email_list.extend(email)
 
         data = json.dumps(email_list)
 
