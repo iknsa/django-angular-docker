@@ -68,9 +68,6 @@ def get_mail(request):
 
         message_list_dict = {}
 
-        for index, item in enumerate(message_list):
-            snippet = 'snippet' in message_list[0]
-
         # iterate over dictionaries
         for element in message_list:
             email = {}
