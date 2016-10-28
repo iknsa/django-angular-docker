@@ -1,11 +1,24 @@
+import requests
+import json
+import time
+from functools import wraps
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from django.contrib.auth import logout as auth_logout
 from django.http import HttpResponse
 
-import requests
-import json
+def timethis(func):
+    """..."""
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        end = time.time()
+        print(func.__name__, end-start)
+        return result
+    return wrapper
 
+@timethis
 def home(request):
     """ Rest endpoint here because we are authentified """
     context = RequestContext(request,
@@ -29,6 +42,7 @@ def logout(request):
     return render_to_response('home.html', {}, RequestContext(request))
 
 
+@timethis
 def get_mail(request):
     """..."""
     messages = []
