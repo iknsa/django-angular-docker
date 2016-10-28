@@ -39,9 +39,9 @@ def get_mail(request):
     if request.user.is_authenticated :
         social = request.user.social_auth.get(provider='google-oauth2')
 
-        maxResults = 10
+        maxResults = 40
         # Get the messages ids
-        response = requests.get('https://www.googleapis.com/gmail/v1/users/bazard.philippe@gmail.com/messages?key=',
+        response = requests.get('https://www.googleapis.com/gmail/v1/users/' + social.uid + '/messages?key=',
                                 params={'access_token': social.extra_data['access_token'],
                                         'maxResults': maxResults,
                                         })
