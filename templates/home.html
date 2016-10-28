@@ -15,13 +15,14 @@
                 {% if user and not user.is_anonymous %}
                     <p class="navbar-text navbar-right">Signed in as <a href="#"
                                                                         class="navbar-link">{{ user.get_full_name|default:user.username }}</a>
-                    <a href="{% url 'auth:logout' %}?next={{ request.path }}"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                        <a href="{% url 'auth:logout' %}?next={{ request.path }}"><i class="fa fa-sign-out"
+                                                                                     aria-hidden="true"></i></a>
                     </p>
                 {% else %}
                     <p class="navbar-text navbar-right">
                         <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">
-                        <i class="fa fa-google-plus-square fa-2x" aria-hidden="true"></i>
-                    </a>
+                            <i class="fa fa-google-plus-square fa-2x" aria-hidden="true"></i>
+                        </a>
                     </p>
                 {% endif %}
             </div>
@@ -29,33 +30,25 @@
     </nav>
 
     <div class="container content">
-        <h1>Gwapit test application</h1>
-        <p>
-        <ul>
-            {% if user and not user.is_anonymous %}
-                <li>
-                    <h3>Hello {{ user.get_full_name|default:user.username }}!</h3>
-                </li>
-                <li>
-                    <a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a>
-                </li>
-            {% else %}
-                <li>
-                    <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">Login with Google
-                        <i class="fa fa-google-plus-square fa-2x" aria-hidden="true"></i>
-                    </a>
-                </li>
-            {% endif %}
-        </ul>
-        </p>
-
-        <div class="container content">
-            <div ng-controller="helloCtrl">
-                <h3>Spring.io test rest api</h3>
-                <p>The ID is {% templatetag openvariable %} greeting.id {% templatetag closevariable %}</p>
-                <p>The content is {% templatetag openvariable %} greeting.content {% templatetag closevariable %}</p>
-            </div>
-        </div>
+        {% if user and not user.is_anonymous %}
+            <table ng-controller="gmailCtrl" class="table table-hover">
+                <thead>
+                <tr>
+                    <th>From</th>
+                    <th>Object</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="record in records">
+                    <td style="width: 10px;">{% templatetag openvariable %}record.payload.headers[12]{% templatetag closevariable %}</td>
+                    <td>{% templatetag openvariable %}record.snippet{% templatetag closevariable %}</td>
+                </tr>
+                </tbody>
+            </table>
+        {% else %}
+            <h1>Gwapit Gmail Test Application</h1>
+        {% endif %}
 
     </div>
+
 {% endblock %}

@@ -16,13 +16,15 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from .views import home, logout
+from .views import home, logout, get_mail
 
 
 urlpatterns = [
 
     url(r'^$', home, name='home'),
     url(r'^logout/$', logout, name='logout'),
+    url(r'^mailbox/$', get_mail, name='get_mail'),
+
     url('', include('social.apps.django_app.urls', namespace='social')),
     url('', include('django.contrib.auth.urls', namespace='auth')),
 

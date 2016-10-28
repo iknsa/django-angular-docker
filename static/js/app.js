@@ -5,7 +5,7 @@
 app = angular.module('gwapitApp', ['ngSanitize']);
 
 app.controller('gmailCtrl', function ($scope, $http) {
-        $http.get('http://localhost:8000/test').then(function (response) {
+        $http.get('http://localhost:8000/mailbox').then(function (response) {
             $scope.records = response.data;
             console.log($scope.records);
         });
