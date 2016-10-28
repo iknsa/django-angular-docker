@@ -40,7 +40,7 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="record in records">
-                    <td style="width: 10px;">{% templatetag openvariable %}record.payload.headers[12]{% templatetag closevariable %}</td>
+                    <td style="width: 10px;">{% templatetag openvariable %}record.from{% templatetag closevariable %}</td>
                     <td>{% templatetag openvariable %}record.snippet{% templatetag closevariable %}</td>
                 </tr>
                 </tbody>

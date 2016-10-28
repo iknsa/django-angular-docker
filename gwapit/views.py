@@ -20,20 +20,6 @@ def home(request):
                                 params={'access_token': social.extra_data['access_token'],
                                         'maxResults': maxResults,
                                         })
-
-
-        print(response.headers)
-        print(response.json())
-
-        message_list = response.json()
-
-        for k, v in message_list.items():
-            print k, v
-
-
-        req_msg = 'https://www.googleapis.com/gmail/v1/users/' + social.uid + '/messages/' + '157f6211b0203baf' + '?key='
-        response = requests.get(req_msg, params={'access_token': social.extra_data['access_token']})
-        #print(response.json())
     return render_to_response('home.html', context)
 
 
@@ -47,6 +33,8 @@ def get_mail(request):
     """..."""
     messages = []
     message_list = []
+
+    email_list=[]
 
     if request.user.is_authenticated :
         social = request.user.social_auth.get(provider='google-oauth2')
@@ -64,13 +52,27 @@ def get_mail(request):
             response = requests.get(req_msg, params={'access_token': social.extra_data['access_token'], 'format': 'metadata'})
             message_list.append(response.json())
 
+        message_list_dict = {}
 
-        data = json.dumps(message_list)
+        for index, item in enumerate(message_list):
+            print('{} {}'.format(index, item))
+            snippet = 'snippet' in message_list[0]
+            print(snippet)
 
-    else:
-        data = {
-            'ERROR': 'Not connected',
-        }
-        data = json.dumps(data)
+        # iterate over dictionaries
+        for element in message_list:
+            email = {}
+            email['snippet'] = element['snippet']
+            payload = element['payload']
+            headers = element['payload']['headers']
+
+            for entry in headers:
+                if entry['name'] == 'From':
+                    email['from'] = entry['value']
+                    print(entry['value'])
+
+            email_list.append(email)
+
+        data = json.dumps(email_list)
 
     return HttpResponse(data, content_type='application/json')
