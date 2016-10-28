@@ -141,8 +141,8 @@ AUTHENTICATION_BACKENDS = [
 LOGIN_REDIRECT_URL = '/'
 
 # to be filled with your Google information
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1054421245701-c0o1rkmi8075op7ni57bjd0m35gocq42.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'CZ8uo21tb_80lB8JcLrxEYrf'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
     'https://www.googleapis.com/auth/gmail.readonly',
