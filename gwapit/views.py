@@ -62,8 +62,13 @@ def get_mail(request):
 
         # for each message id get the message data
         for msg in response.json()['messages']:
-            req_msg = 'https://www.googleapis.com/gmail/v1/users/' + social.uid + '/messages/' + msg['id'] + '?key='
-            response = requests.get(req_msg, params={'access_token': social.extra_data['access_token'], 'format': 'metadata'})
+            req_msg = 'https://www.googleapis.com/gmail/v1/users/' \
+                      + social.uid \
+                      + '/messages/' \
+                      + msg['id'] \
+                      + '?key='\
+                      + '&fields=snippet,payload'
+            response = requests.get(req_msg, params={'access_token': social.extra_data['access_token']})
             message_list.append(response.json())
 
         message_list_dict = {}
