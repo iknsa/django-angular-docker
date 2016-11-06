@@ -53,13 +53,12 @@ def get_mail(request):
     if request.user.is_authenticated :
         social = request.user.social_auth.get(provider='google-oauth2')
 
-        maxResults = 40
+        maxResults = 100
         # Get the messages ids
         response = requests.get('https://www.googleapis.com/gmail/v1/users/' + social.uid + '/messages?key=',
                                 params={'access_token': social.extra_data['access_token'],
                                         'maxResults': maxResults,
                                         })
-
         # for each message id get the message data
         for msg in response.json()['messages']:
             req_msg = 'https://www.googleapis.com/gmail/v1/users/' \
@@ -67,7 +66,7 @@ def get_mail(request):
                       + '/messages/' \
                       + msg['id'] \
                       + '?key='\
-                      + '&fields=snippet,payload'
+                      + '&fields=snippet,payload/headers'
             response = requests.get(req_msg, params={'access_token': social.extra_data['access_token']})
             message_list.append(response.json())
 
@@ -77,14 +76,13 @@ def get_mail(request):
         for element in message_list:
             email = {}
             email['snippet'] = element['snippet']
-            payload = element['payload']
             headers = element['payload']['headers']
 
             for entry in headers:
                 if entry['name'] == 'From':
                     email['from'] = entry['value']
 
-            email_list.extend(email)
+            email_list.append(email)
 
         data = json.dumps(email_list)
 
