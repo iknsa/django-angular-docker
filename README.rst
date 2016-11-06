@@ -21,7 +21,7 @@ You will provide the source code of your app so that it can be tested.
 
 Installation
 ############
-* In `settings.py`, set SOCIAL_AUTH_GOOGLE_OAUTH2_KEY and SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET
+* In ``settings.py``, set SOCIAL_AUTH_GOOGLE_OAUTH2_KEY and SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET
 * Delete gwapit_web_1 and gwapit_db_1
 * Run docker-compose build
 * Run docker-compose up
