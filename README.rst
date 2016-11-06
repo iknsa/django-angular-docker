@@ -18,3 +18,10 @@ Using Python Django REST framework Angular, do an application allowing to:
 7. Allow to logback in
 
 You will provide the source code of your app so that it can be tested.
+
+Installation
+############
+
+* Delete gwapit_web_1 and gwapit_db_1
+* Run docker-compose build
+* Run docker-compose up
