@@ -1,5 +1,5 @@
 *****
-TEST python + Django + angular
+Example Django + Angular + Docker application
 *****
 
 Using Python Django REST framework Angular, do an application allowing to:
