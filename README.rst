@@ -1,5 +1,5 @@
 *****
-Example Django + Angular + Docker application
+Example of Django + Angular + Docker application
 *****
 
 Using Python Django REST framework Angular, do an application allowing to:
